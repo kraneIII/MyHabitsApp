@@ -15,7 +15,8 @@ class InfoViewController: UIViewController {
     private lazy var descriptionTextView: UITextView = {
         let descriptionTextView = UITextView()
         descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
-        descriptionTextView.font = UIFont.systemFont(ofSize: 13)
+        descriptionTextView.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        descriptionTextView.isEditable = false
         descriptionTextView.text =
     """
         1. Надо понять, от чего вы хотите избавиться и что приобрести.Провести ревизию всех своих приобретенных привычек. Составить список тех, которые вы желали бы выработать. Поставьте цели, достичь которых вам помогут только новые навыки. Выберите 1–3 привычки, над которыми будете работать в ближайшее время. Напишите мотивирующие фразы. Развесьте их на стенах так, чтобы они всегда попадались вам на глаза и помогали в трудные минуты.
@@ -46,6 +47,8 @@ class InfoViewController: UIViewController {
     private func setupViewController() {
         view.backgroundColor = .white
         navigationItem.title = "Информация"
+        tabBarController?.tabBar.backgroundColor = .white
+
     }
     
     private func addSubViews() {

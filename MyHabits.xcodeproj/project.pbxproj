@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		EAA454912B4B54AA00636F07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA454902B4B54AA00636F07 /* AppDelegate.swift */; };
 		EAA454932B4B54AA00636F07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA454922B4B54AA00636F07 /* SceneDelegate.swift */; };
-		EAA4549A2B4B54AB00636F07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAA454992B4B54AB00636F07 /* Assets.xcassets */; };
+		EAA4549A2B4B54AB00636F07 /* data.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAA454992B4B54AB00636F07 /* data.xcassets */; };
 		EAA454A72B4B569600636F07 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA454A62B4B569600636F07 /* HabitsViewController.swift */; };
 		EAA454A92B4B56A900636F07 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA454A82B4B56A900636F07 /* InfoViewController.swift */; };
 		EAA454AC2B4B5ACA00636F07 /* HabitsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA454AB2B4B5ACA00636F07 /* HabitsStore.swift */; };
@@ -17,15 +17,17 @@
 		EAA454C02B4C958600636F07 /* ProgressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA454BF2B4C958600636F07 /* ProgressCollectionViewCell.swift */; };
 		EAA454C32B4C9F5800636F07 /* HabitCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA454C22B4C9F5800636F07 /* HabitCreateViewController.swift */; };
 		EAA454C62B4CA12600636F07 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA454C52B4CA12600636F07 /* ColorExtension.swift */; };
-		EAA454C82B4CA37900636F07 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA454C72B4CA37900636F07 /* StringExtension.swift */; };
 		EAA454CC2B4F262100636F07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAA454CB2B4F262100636F07 /* LaunchScreen.storyboard */; };
+		EAE4C9222B5882EE0084FF12 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4C9212B5882EE0084FF12 /* DetailsViewController.swift */; };
+		EAE4C9242B5886740084FF12 /* HabitEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4C9232B5886740084FF12 /* HabitEditViewController.swift */; };
+		EAE4C92D2B59C37B0084FF12 /* HabitDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4C92C2B59C37B0084FF12 /* HabitDetailsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EAA4548D2B4B54AA00636F07 /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA454902B4B54AA00636F07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAA454922B4B54AA00636F07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EAA454992B4B54AB00636F07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EAA454992B4B54AB00636F07 /* data.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = data.xcassets; sourceTree = "<group>"; };
 		EAA4549E2B4B54AB00636F07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAA454A62B4B569600636F07 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
 		EAA454A82B4B56A900636F07 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
@@ -34,8 +36,10 @@
 		EAA454BF2B4C958600636F07 /* ProgressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAA454C22B4C9F5800636F07 /* HabitCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreateViewController.swift; sourceTree = "<group>"; };
 		EAA454C52B4CA12600636F07 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
-		EAA454C72B4CA37900636F07 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		EAA454CB2B4F262100636F07 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EAE4C9212B5882EE0084FF12 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		EAE4C9232B5886740084FF12 /* HabitEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEditViewController.swift; sourceTree = "<group>"; };
+		EAE4C92C2B59C37B0084FF12 /* HabitDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				EAA454A42B4B562600636F07 /* Resources */,
-				EAA454992B4B54AB00636F07 /* Assets.xcassets */,
+				EAA454992B4B54AB00636F07 /* data.xcassets */,
 				EAA4549E2B4B54AB00636F07 /* Info.plist */,
 			);
 			path = MyHabits;
@@ -88,10 +92,10 @@
 		EAA454A52B4B564600636F07 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				EAA454A62B4B569600636F07 /* HabitsViewController.swift */,
-				EAA454A82B4B56A900636F07 /* InfoViewController.swift */,
-				EAA454C22B4C9F5800636F07 /* HabitCreateViewController.swift */,
-				EAA454AD2B4B68D200636F07 /* CollectionViewCells */,
+				EAE4C9252B59B5780084FF12 /* HabitCollection + Info */,
+				EAE4C9262B59B5CB0084FF12 /* HabitDetailViewController */,
+				EAE4C9272B59B5FB0084FF12 /* HabitEditViewController */,
+				EAA454C42B4CA0FE00636F07 /* Extenciones */,
 				EAA454AA2B4B5AA600636F07 /* Data */,
 			);
 			path = ViewControllers;
@@ -111,7 +115,6 @@
 			children = (
 				EAA454BF2B4C958600636F07 /* ProgressCollectionViewCell.swift */,
 				EAA454AE2B4B690300636F07 /* HabitsCollectionViewCell.swift */,
-				EAA454C42B4CA0FE00636F07 /* Extenciones */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -128,9 +131,36 @@
 			isa = PBXGroup;
 			children = (
 				EAA454C52B4CA12600636F07 /* ColorExtension.swift */,
-				EAA454C72B4CA37900636F07 /* StringExtension.swift */,
 			);
 			path = Extenciones;
+			sourceTree = "<group>";
+		};
+		EAE4C9252B59B5780084FF12 /* HabitCollection + Info */ = {
+			isa = PBXGroup;
+			children = (
+				EAA454A62B4B569600636F07 /* HabitsViewController.swift */,
+				EAA454C22B4C9F5800636F07 /* HabitCreateViewController.swift */,
+				EAA454A82B4B56A900636F07 /* InfoViewController.swift */,
+				EAA454AD2B4B68D200636F07 /* CollectionViewCells */,
+			);
+			path = "HabitCollection + Info";
+			sourceTree = "<group>";
+		};
+		EAE4C9262B59B5CB0084FF12 /* HabitDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EAE4C9212B5882EE0084FF12 /* DetailsViewController.swift */,
+				EAE4C92C2B59C37B0084FF12 /* HabitDetailsTableViewCell.swift */,
+			);
+			path = HabitDetailViewController;
+			sourceTree = "<group>";
+		};
+		EAE4C9272B59B5FB0084FF12 /* HabitEditViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EAE4C9232B5886740084FF12 /* HabitEditViewController.swift */,
+			);
+			path = HabitEditViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,7 +191,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					EAA4548C2B4B54AA00636F07 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -191,7 +221,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAA4549A2B4B54AB00636F07 /* Assets.xcassets in Resources */,
+				EAA4549A2B4B54AB00636F07 /* data.xcassets in Resources */,
 				EAA454CC2B4F262100636F07 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,14 +235,16 @@
 			files = (
 				EAA454AF2B4B690300636F07 /* HabitsCollectionViewCell.swift in Sources */,
 				EAA454C62B4CA12600636F07 /* ColorExtension.swift in Sources */,
-				EAA454C82B4CA37900636F07 /* StringExtension.swift in Sources */,
+				EAE4C9222B5882EE0084FF12 /* DetailsViewController.swift in Sources */,
 				EAA454AC2B4B5ACA00636F07 /* HabitsStore.swift in Sources */,
+				EAE4C9242B5886740084FF12 /* HabitEditViewController.swift in Sources */,
 				EAA454C32B4C9F5800636F07 /* HabitCreateViewController.swift in Sources */,
 				EAA454912B4B54AA00636F07 /* AppDelegate.swift in Sources */,
 				EAA454932B4B54AA00636F07 /* SceneDelegate.swift in Sources */,
 				EAA454A72B4B569600636F07 /* HabitsViewController.swift in Sources */,
 				EAA454C02B4C958600636F07 /* ProgressCollectionViewCell.swift in Sources */,
 				EAA454A92B4B56A900636F07 /* InfoViewController.swift in Sources */,
+				EAE4C92D2B59C37B0084FF12 /* HabitDetailsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +287,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -315,6 +348,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -340,6 +374,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AW955WS254;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyHabits/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -369,6 +404,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AW955WS254;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyHabits/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

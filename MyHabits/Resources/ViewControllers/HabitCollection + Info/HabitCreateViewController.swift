@@ -167,22 +167,27 @@ class HabitCreateViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func pushHabitViewController() {
-        let habitViewController = HabitsViewController()
         
-        navigationController?.pushViewController(habitViewController, animated: true)
+        dismiss(animated: true)
     }
     
     @objc func saveHabitAndPushHabitController() {
-        let habitViewController = HabitsViewController()
         
-        navigationController?.pushViewController(habitViewController, animated: true)
-        
-        let newHabit = Habit(name: habitTextField.text!,
-                             date: dataPicker.date,
-                             color: colorPickerButton.backgroundColor!)
-        let store = HabitsStore.shared
-        store.habits.append(newHabit)
-
+        if habitTextField.text?.isEmpty == true {
+            let alert = UIAlertController(title: "Название привычки", message: "Вы не задали привычке имя", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ок", style: .default))
+            self.present(alert, animated: true)
+        }
+        else {
+            dismiss(animated: true)
+            
+            let newHabit = Habit(name: habitTextField.text!,
+                                 date: dataPicker.date,
+                                 color: colorPickerButton.backgroundColor!)
+            let store = HabitsStore.shared
+            store.habits.append(newHabit)
+            
+        }
     }
     
     @objc func hideKeyboard() {

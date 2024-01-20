@@ -3,7 +3,6 @@ import UIKit
 
 class HabitsViewController: UIViewController {
     
-    
     private lazy var collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(
@@ -24,17 +23,6 @@ class HabitsViewController: UIViewController {
         case progress = "ProgressViewControllerCell_ReuseID"
         case habits = "HabitsViewControllerCell_ReuseID"
     }
-    
-    private lazy var createButton: UIButton = {
-        let createButton = UIButton()
-        createButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        createButton.translatesAutoresizingMaskIntoConstraints = false
-        createButton.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
-        createButton.addTarget(self, action: #selector(presentCreateHabitController), for: .touchUpInside)
-        
-        
-        return createButton
-    }()
     
     private lazy var dataLabel: UILabel = {
         let dataLabel = UILabel()
@@ -60,18 +48,25 @@ class HabitsViewController: UIViewController {
         addSubView()
         allViewsLayout()
         tuneCollectionView()
+        self.collectionView.reloadData()
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.collectionView.reloadData()
+    }
+
     //MARK: - Private
     
     private func setupView() {
         view.backgroundColor = .white
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(presentCreateHabitController))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .done, target: self, action: #selector(deleteAllHabits))
+        navigationItem.leftBarButtonItem?.tintColor = .purpleColor
+        navigationItem.rightBarButtonItem?.tintColor = .purpleColor
     }
     
     private func addSubView() {
-        view.addSubview(createButton)
         view.addSubview(dataLabel)
         view.addSubview(collectionView)
         view.addSubview(line)
@@ -82,13 +77,8 @@ class HabitsViewController: UIViewController {
         let safeArea = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-        
-            createButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
-            createButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -8),
-            createButton.widthAnchor.constraint(equalToConstant: 40),
-            createButton.heightAnchor.constraint(equalToConstant: 40),
             
-            dataLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 50),
+            dataLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 4),
             dataLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 8),
             
             line.topAnchor.constraint(equalTo: dataLabel.bottomAnchor, constant: 5),
@@ -105,6 +95,22 @@ class HabitsViewController: UIViewController {
         
     }
     
+    private func deleteAll() {
+        let alert = UIAlertController(title: "Удалить все", message: "Вы уверены, что хотите безвозвратно удалить все элементы?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Удалить", style: .default)
+                        {
+            _ in
+            HabitsStore.shared.habits.removeAll()
+            self.collectionView.reloadData()
+            self.navigationController?.dismiss(animated: true)
+
+        })
+        
+        alert.addAction(UIAlertAction(title: "Отмена", style: .default))
+        
+        present(alert, animated: true)
+    }
+    
     private func tuneCollectionView() {
         collectionView.layer.backgroundColor = UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1).cgColor
 
@@ -117,6 +123,7 @@ class HabitsViewController: UIViewController {
         collectionView.dataSource = self
     }
     
+    
     //MARK: - objc func
     
     @objc func presentCreateHabitController() {
@@ -127,6 +134,11 @@ class HabitsViewController: UIViewController {
         present(createHabit, animated: true)
     }
  
+    @objc func deleteAllHabits() {
+        deleteAll()
+        
+    }
+    
 }
 
 //MARK: - Extensiones
@@ -153,11 +165,13 @@ extension HabitsViewController : UICollectionViewDataSource{
             return cell
         }
 
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseID.habits.rawValue, for: indexPath) as? HabitsCollectionViewCell
-
-            else {
-                return UICollectionViewCell()
-            }
+        guard let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: ReuseID.habits.rawValue, for: indexPath) as? HabitsCollectionViewCell)
+        else {
+            return UICollectionViewCell()
+        }
+        cell.contentView.layer.cornerRadius = 12.0
+        cell.contentView.backgroundColor = .white
+        cell.configure(index: indexPath.row - 1)
             return cell
         }
     }
@@ -165,6 +179,18 @@ extension HabitsViewController : UICollectionViewDataSource{
 
 extension HabitsViewController: UICollectionViewDelegate {
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row != 0 {
+            
+            let detailsViewController = DetailsViewController()
+            navigationController?.pushViewController(detailsViewController, animated: true)
+        }
+    }
+    
+    func reload() {
+        self.collectionView.reloadData()
+    }
+    
 }
 
 extension HabitsViewController: UICollectionViewDelegateFlowLayout {
@@ -172,6 +198,8 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
         if indexPath.row == 0 {
             return CGSize(width: UIScreen.main.bounds.width - 30, height: 65)
         }
-        return CGSize(width: 0, height: 0)
+        return CGSize(width: UIScreen.main.bounds.width - 30, height: 130)
     }
 }
+
+
