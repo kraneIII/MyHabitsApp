@@ -1,8 +1,6 @@
 
 
 import UIKit
-var callPlace = ""
-
 
 class HabitCreateViewController: UIViewController, UITextFieldDelegate {
     

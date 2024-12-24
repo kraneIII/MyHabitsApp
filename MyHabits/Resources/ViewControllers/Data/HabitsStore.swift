@@ -1,9 +1,3 @@
-//
-//  HabitsStore.swift
-//  MyHabits
-//
-//  Created by Денис Кузьминов on 26.06.2023.
-//
 
 import UIKit
 
@@ -215,3 +209,6 @@ private extension Date {
         return dates
     }
 }
+
+
+
