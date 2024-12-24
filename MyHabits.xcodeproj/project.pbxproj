@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA3773C92D10736600FFBA67 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3773C82D10736600FFBA67 /* NotificationService.swift */; };
+		EA3773EA2D1AF1D200FFBA67 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3773E92D1AF1D200FFBA67 /* StringExtension.swift */; };
 		EAA454912B4B54AA00636F07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA454902B4B54AA00636F07 /* AppDelegate.swift */; };
 		EAA454932B4B54AA00636F07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA454922B4B54AA00636F07 /* SceneDelegate.swift */; };
 		EAA4549A2B4B54AB00636F07 /* data.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAA454992B4B54AB00636F07 /* data.xcassets */; };
@@ -23,7 +25,32 @@
 		EAE4C92D2B59C37B0084FF12 /* HabitDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4C92C2B59C37B0084FF12 /* HabitDetailsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		EAE4C9402B5DBDF10084FF12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAA454852B4B54AA00636F07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAA4548C2B4B54AA00636F07;
+			remoteInfo = MyHabits;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EAE4C94D2B5DBDF20084FF12 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		EA3773C82D10736600FFBA67 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		EA3773E92D1AF1D200FFBA67 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		EAA4548D2B4B54AA00636F07 /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA454902B4B54AA00636F07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAA454922B4B54AA00636F07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +67,7 @@
 		EAE4C9212B5882EE0084FF12 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		EAE4C9232B5886740084FF12 /* HabitEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEditViewController.swift; sourceTree = "<group>"; };
 		EAE4C92C2B59C37B0084FF12 /* HabitDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		EAE4C93C2B5DBDF10084FF12 /* StorageServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,9 +78,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EAE4C9392B5DBDF10084FF12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA3773CA2D10737E00FFBA67 /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				EA3773C82D10736600FFBA67 /* NotificationService.swift */,
+			);
+			path = NotificationService;
+			sourceTree = "<group>";
+		};
 		EAA454842B4B54AA00636F07 = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				EAA4548D2B4B54AA00636F07 /* MyHabits.app */,
+				EAE4C93C2B5DBDF10084FF12 /* StorageServiceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,6 +140,7 @@
 				EAE4C9262B59B5CB0084FF12 /* HabitDetailViewController */,
 				EAE4C9272B59B5FB0084FF12 /* HabitEditViewController */,
 				EAA454C42B4CA0FE00636F07 /* Extenciones */,
+				EA3773CA2D10737E00FFBA67 /* NotificationService */,
 				EAA454AA2B4B5AA600636F07 /* Data */,
 			);
 			path = ViewControllers;
@@ -131,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				EAA454C52B4CA12600636F07 /* ColorExtension.swift */,
+				EA3773E92D1AF1D200FFBA67 /* StringExtension.swift */,
 			);
 			path = Extenciones;
 			sourceTree = "<group>";
@@ -173,6 +219,7 @@
 				EAA454892B4B54AA00636F07 /* Sources */,
 				EAA4548A2B4B54AA00636F07 /* Frameworks */,
 				EAA4548B2B4B54AA00636F07 /* Resources */,
+				EAE4C94D2B5DBDF20084FF12 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -183,6 +230,24 @@
 			productReference = EAA4548D2B4B54AA00636F07 /* MyHabits.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EAE4C93B2B5DBDF10084FF12 /* StorageServiceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAE4C94E2B5DBDF20084FF12 /* Build configuration list for PBXNativeTarget "StorageServiceTests" */;
+			buildPhases = (
+				EAE4C9382B5DBDF10084FF12 /* Sources */,
+				EAE4C9392B5DBDF10084FF12 /* Frameworks */,
+				EAE4C93A2B5DBDF10084FF12 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EAE4C9412B5DBDF10084FF12 /* PBXTargetDependency */,
+			);
+			name = StorageServiceTests;
+			productName = StorageServiceTests;
+			productReference = EAE4C93C2B5DBDF10084FF12 /* StorageServiceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -190,11 +255,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					EAA4548C2B4B54AA00636F07 = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					EAE4C93B2B5DBDF10084FF12 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = EAA4548C2B4B54AA00636F07;
 					};
 				};
 			};
@@ -212,6 +281,7 @@
 			projectRoot = "";
 			targets = (
 				EAA4548C2B4B54AA00636F07 /* MyHabits */,
+				EAE4C93B2B5DBDF10084FF12 /* StorageServiceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -226,6 +296,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EAE4C93A2B5DBDF10084FF12 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -235,11 +312,13 @@
 			files = (
 				EAA454AF2B4B690300636F07 /* HabitsCollectionViewCell.swift in Sources */,
 				EAA454C62B4CA12600636F07 /* ColorExtension.swift in Sources */,
+				EA3773C92D10736600FFBA67 /* NotificationService.swift in Sources */,
 				EAE4C9222B5882EE0084FF12 /* DetailsViewController.swift in Sources */,
 				EAA454AC2B4B5ACA00636F07 /* HabitsStore.swift in Sources */,
 				EAE4C9242B5886740084FF12 /* HabitEditViewController.swift in Sources */,
 				EAA454C32B4C9F5800636F07 /* HabitCreateViewController.swift in Sources */,
 				EAA454912B4B54AA00636F07 /* AppDelegate.swift in Sources */,
+				EA3773EA2D1AF1D200FFBA67 /* StringExtension.swift in Sources */,
 				EAA454932B4B54AA00636F07 /* SceneDelegate.swift in Sources */,
 				EAA454A72B4B569600636F07 /* HabitsViewController.swift in Sources */,
 				EAA454C02B4C958600636F07 /* ProgressCollectionViewCell.swift in Sources */,
@@ -248,7 +327,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EAE4C9382B5DBDF10084FF12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EAE4C9412B5DBDF10084FF12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EAA4548C2B4B54AA00636F07 /* MyHabits */;
+			targetProxy = EAE4C9402B5DBDF10084FF12 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		EAA4549F2B4B54AB00636F07 /* Debug */ = {
@@ -427,6 +521,51 @@
 			};
 			name = Release;
 		};
+		EAE4C94F2B5DBDF20084FF12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AW955WS254;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HabitsMy.StorageServiceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyHabits.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyHabits";
+			};
+			name = Debug;
+		};
+		EAE4C9502B5DBDF20084FF12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AW955WS254;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HabitsMy.StorageServiceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyHabits.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyHabits";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -444,6 +583,15 @@
 			buildConfigurations = (
 				EAA454A22B4B54AB00636F07 /* Debug */,
 				EAA454A32B4B54AB00636F07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAE4C94E2B5DBDF20084FF12 /* Build configuration list for PBXNativeTarget "StorageServiceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAE4C94F2B5DBDF20084FF12 /* Debug */,
+				EAE4C9502B5DBDF20084FF12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

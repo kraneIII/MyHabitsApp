@@ -3,6 +3,9 @@ import UIKit
 
 class HabitsViewController: UIViewController {
     
+    var collectionCell = HabitsCollectionViewCell()
+    var notificationService = NotificationService()
+    
     private lazy var collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(
@@ -28,6 +31,7 @@ class HabitsViewController: UIViewController {
         let dataLabel = UILabel()
         dataLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         dataLabel.text = "Сегодня"
+        dataLabel.textColor = UIColor.myColor(dark: .white, any: .black)
         dataLabel.translatesAutoresizingMaskIntoConstraints = false
         
         return dataLabel
@@ -49,21 +53,59 @@ class HabitsViewController: UIViewController {
         allViewsLayout()
         tuneCollectionView()
         self.collectionView.reloadData()
+        notificationService.AskForNotificationPermission()
+        alertIfPermissionDenied()
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.collectionView.reloadData()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadDataAction(notificiation: )), name: Notification.Name("reloadData"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.collectionView.reloadData()
+        if collectionCell.buttonState == .tapped {
+            reload()
+        }
     }
 
     //MARK: - Private
     
+    private func alertIfPermissionDenied() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
+            guard let self else { return }
+            Task{
+                if await self.notificationService.checkNotificationPermission() {
+                    return
+                }
+                else {
+                    let alertVC = UIAlertController(title: "Notification", message: "Вы запретили отправку уведомлений данным приложением, хотите ли вы включить ее?", preferredStyle: .alert)
+                    let alertAction = UIAlertAction(title: "Ok", style: .default, handler: {_ in
+                        if let appSettings = URL(string: UIApplication.openNotificationSettingsURLString),
+                            UIApplication.shared.canOpenURL(appSettings) {
+                            UIApplication.shared.open(appSettings)
+                        }
+                    })
+                    let alertAction2 = UIAlertAction(title: "No", style: .default, handler: {_ in
+                        return
+                    })
+                    alertVC.addAction(alertAction)
+                    alertVC.addAction(alertAction2)
+                    self.navigationController?.present(alertVC, animated: true)
+                }
+            }
+        })
+
+    }
+    
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.myColor(dark: #colorLiteral(red: 0.1098039076, green: 0.1098039076, blue: 0.1098039076, alpha: 1), any: .white)
         navigationController?.navigationBar.isHidden = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(presentCreateHabitController))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .done, target: self, action: #selector(deleteAllHabits))
-        navigationItem.leftBarButtonItem?.tintColor = .purpleColor
-        navigationItem.rightBarButtonItem?.tintColor = .purpleColor
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.myColor(dark: #colorLiteral(red: 0.8646442294, green: 0.2918058038, blue: 0, alpha: 1), any: .purpleColor)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.myColor(dark: #colorLiteral(red: 0.8646442294, green: 0.2918058038, blue: 0, alpha: 1), any: .purpleColor)
+
     }
     
     private func addSubView() {
@@ -101,7 +143,7 @@ class HabitsViewController: UIViewController {
                         {
             _ in
             HabitsStore.shared.habits.removeAll()
-            self.collectionView.reloadData()
+            self.reloadData()
             self.navigationController?.dismiss(animated: true)
 
         })
@@ -112,7 +154,7 @@ class HabitsViewController: UIViewController {
     }
     
     private func tuneCollectionView() {
-        collectionView.layer.backgroundColor = UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1).cgColor
+        collectionView.backgroundColor = UIColor.myColor(dark: #colorLiteral(red: 0.1568627059, green: 0.1568627059, blue: 0.1568627059, alpha: 1), any: #colorLiteral(red: 0.949019134, green: 0.9490200877, blue: 0.9705253243, alpha: 1))
 
         
         collectionView.register(ProgressCollectionViewCell.self, forCellWithReuseIdentifier: ReuseID.progress.rawValue)
@@ -121,8 +163,12 @@ class HabitsViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        reloadData()
     }
     
+    func reloadData() {
+        collectionView.reloadData()
+    }
     
     //MARK: - objc func
     
@@ -136,6 +182,10 @@ class HabitsViewController: UIViewController {
  
     @objc func deleteAllHabits() {
         deleteAll()
+    }
+    
+    @objc func reloadDataAction(notificiation: Notification) {
+        collectionView.reloadData()
         
     }
     
@@ -160,17 +210,17 @@ extension HabitsViewController : UICollectionViewDataSource{
             }
             cell.contentView.layer.cornerRadius = 12.0
             cell.configureProgresscCell()
-            cell.contentView.backgroundColor = .white
+            cell.contentView.backgroundColor = UIColor.myColor(dark:#colorLiteral(red: 0.1098039076, green: 0.1098039076, blue: 0.1098039076, alpha: 1), any: .white)
         
             return cell
         }
 
-        guard let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: ReuseID.habits.rawValue, for: indexPath) as? HabitsCollectionViewCell)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseID.habits.rawValue, for: indexPath) as? HabitsCollectionViewCell
         else {
             return UICollectionViewCell()
         }
         cell.contentView.layer.cornerRadius = 12.0
-        cell.contentView.backgroundColor = .white
+        cell.contentView.backgroundColor = UIColor.myColor(dark: #colorLiteral(red: 0.1098039076, green: 0.1098039076, blue: 0.1098039076, alpha: 1), any: .white)
         cell.configure(index: indexPath.row - 1)
             return cell
         }
@@ -183,6 +233,7 @@ extension HabitsViewController: UICollectionViewDelegate {
         if indexPath.row != 0 {
             
             let detailsViewController = DetailsViewController()
+            detailsViewController.index = indexPath.row - 1
             navigationController?.pushViewController(detailsViewController, animated: true)
         }
     }

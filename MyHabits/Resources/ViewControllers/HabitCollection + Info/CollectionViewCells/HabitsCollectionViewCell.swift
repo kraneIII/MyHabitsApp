@@ -1,19 +1,26 @@
 
 import UIKit
+import AudioToolbox
+
+enum State {
+    case tapped
+    case notTapped
+}
 
 class HabitsCollectionViewCell: UICollectionViewCell {
     
+    var buttonState: State = .notTapped
     var index = 0
     
     private lazy var counter: UILabel = {
         let counter = UILabel()
-        counter.textColor = .systemGray2
+        counter.textColor = UIColor.myColor(dark: #colorLiteral(red: 0.6823526025, green: 0.6823533773, blue: 0.6995555758, alpha: 1), any: .systemGray2)
         counter.translatesAutoresizingMaskIntoConstraints = false
         counter.font = UIFont(name: "SFProText-Regular", size: 13)
-
-
         
-       return counter
+        
+        
+        return counter
     }()
     
     private lazy var habitName: UILabel = {
@@ -22,7 +29,7 @@ class HabitsCollectionViewCell: UICollectionViewCell {
         habitName.font = UIFont(name: "SFProText-Semibold", size: 17)
         habitName.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         
-       return habitName
+        return habitName
     }()
     
     private lazy var habitTime: UILabel = {
@@ -31,37 +38,31 @@ class HabitsCollectionViewCell: UICollectionViewCell {
         habitTime.font = UIFont(name: "SFProText-Regular", size: 12)
         habitTime.translatesAutoresizingMaskIntoConstraints = false
         
-       return habitTime
+        return habitTime
     }()
     
-    private lazy var circleImage: UIButton = {
-        let circleImage = UIButton()
-        circleImage.layer.cornerRadius = 19
-        circleImage.translatesAutoresizingMaskIntoConstraints = false
-        circleImage.clipsToBounds = true
-        circleImage.layer.borderWidth = 2
-        //        circleImage.setImage(UIImage(named: "trackedIcon"), for: .normal)
-        circleImage.addTarget(self, action: #selector(animationCompleted) , for: .touchUpInside)
+    private lazy var habitAction: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 30
+        button.backgroundColor = UIColor(named: "buttonColor")
+        button.layer.borderWidth = 3
+        button.addTarget(self, action: #selector(checkAction), for: .touchUpInside)
+        button.layer.masksToBounds = true
         
-        return circleImage
+        return button
     }()
+    
+    private lazy var imageButton: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "Image")
 
-    private lazy var circleFilledImage: UIButton = {
-        let circleFilledImage = UIButton()
-        circleFilledImage.translatesAutoresizingMaskIntoConstraints = false
-        circleFilledImage.setImage(UIImage(named: "trackedButtonTouched"), for: .normal)
-        circleFilledImage.addTarget(self, action: #selector(animationCanceled), for: .touchUpInside)
-        circleFilledImage.isHidden = true
-
+        
+        return image
+    }()
         //MARK: - добавить цвет
-
-
-        return circleFilledImage
-    }()
-
-
-    
-    
+   
     override init(frame: CGRect) {
         super .init(frame: .zero)
         addSubViews()
@@ -73,42 +74,19 @@ class HabitsCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Private
-    
-    private func animation() {
-        let animator = UIViewPropertyAnimator(
-            duration: 0.2,
-            curve: .linear) { [self] in
-                
-                self.circleImage.backgroundColor = habitName.textColor
-                self.circleFilledImage.isHidden = false
-            }
-        animator.startAnimation(afterDelay: 0)
-        }
-    
-    private func cancelAnimation() {
-        let animator = UIViewPropertyAnimator(
-            duration: 0.2,
-            curve: .linear) {
-                
-                self.circleImage.backgroundColor = .white
-                self.circleFilledImage.isHidden = true
-            }
-        animator.startAnimation(afterDelay: 0)
-    }
-    
-    
+
     private func addSubViews() {
         contentView.addSubview(habitName)
         contentView.addSubview(habitTime)
         contentView.addSubview(counter)
-        contentView.addSubview(circleImage)
-        contentView.addSubview(circleFilledImage)
+        contentView.addSubview(habitAction)
+        habitAction.addSubview(imageButton)
     }
     
     private func viewsLayout() {
         addSubViews()
         NSLayoutConstraint.activate([
-        
+            
             habitName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             habitName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             
@@ -118,54 +96,80 @@ class HabitsCollectionViewCell: UICollectionViewCell {
             counter.leadingAnchor.constraint(equalTo: habitName.leadingAnchor),
             counter.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
             
-            circleImage.widthAnchor.constraint(equalToConstant: 38),
-            circleImage.heightAnchor.constraint(equalToConstant: 38),
-            circleImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            circleImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            habitAction.heightAnchor.constraint(equalToConstant: 60),
+            habitAction.widthAnchor.constraint(equalToConstant: 60),
+            habitAction.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 43),
+            habitAction.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20),
             
-            circleFilledImage.topAnchor.constraint(equalTo: circleImage.topAnchor),
-            circleFilledImage.bottomAnchor.constraint(equalTo: circleImage.bottomAnchor),
-            circleFilledImage.leadingAnchor.constraint(equalTo: circleImage.leadingAnchor),
-            circleFilledImage.trailingAnchor.constraint(equalTo: circleImage.trailingAnchor),
+           
+            imageButton.heightAnchor.constraint(equalToConstant: 50),
+            imageButton.widthAnchor.constraint(equalToConstant: 50),
+            imageButton.centerYAnchor.constraint(equalTo: habitAction.centerYAnchor),
+            imageButton.centerXAnchor.constraint(equalTo: habitAction.centerXAnchor),
 
+            
         ])
         
     }
-
-    func configure(index: Int) {
-                            
-        habitName.text = HabitsStore.shared.habits[index].name
-        habitTime.text = "\(HabitsStore.shared.habits[index].dateString)"
-        counter.text = "Счетчик: \(HabitsStore.shared.habits[index].trackDates.count )"
-        habitName.textColor = HabitsStore.shared.habits[index].color
-        circleImage.layer.borderColor = habitName.textColor.cgColor
-        if HabitsStore.shared.habit(HabitsStore.shared.habits[index], isTrackedIn: HabitsStore.shared.habits[index].date) {
-            HabitsStore.shared.track(HabitsStore.shared.habits[index])
-        }
-        if HabitsStore.shared.habits[index].isAlreadyTakenToday == false {
-               
-            HabitsStore.shared.track(HabitsStore.shared.habits[index])
-                counter.text = "\(HabitsStore.shared.habits[index].trackDates.count )"
-                
-                
-            }
-        }
     
-    @objc func animationCompleted() {
+    func configure(index: Int){
+        habitName.tag = index
         
-        let index = habitName.tag
+        habitName.text = HabitsStore.shared.habits[index].name
+        habitName.textColor = HabitsStore.shared.habits[index].color
+        habitTime.text = HabitsStore.shared.habits[index].dateString
+        counter.text = "Счётчик: \(HabitsStore.shared.habits[index].trackDates.count)"
+        habitAction.layer.borderColor = HabitsStore.shared.habits[index].color.cgColor
+        
+        UIView.animate(withDuration: 3, delay: 0.5, usingSpringWithDamping: 2, initialSpringVelocity: 5, animations: {
+            self.imageButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+            self.imageButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+            self.imageButton.transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
+        })
         
         if HabitsStore.shared.habits[index].isAlreadyTakenToday == false {
-            HabitsStore.shared.track(HabitsStore.shared.habits[index])
-            counter.text = "\(HabitsStore.shared.habits[index].trackDates.count )"
-            cancelAnimation()
-
+            notSelectedButton()
+           
+        } else {
+            selectedButton()
+            
         }
-        
-        animation()
     }
     
-    @objc func animationCanceled() {
-        cancelAnimation()
+    func selectedButton(){
+        
+        imageButton.isHidden = false
+        imageButton.setImageColor(color:  habitName.textColor)
+    }
+    
+    func notSelectedButton(){
+        
+        habitAction.backgroundColor = UIColor(named: "buttonColor")
+        imageButton.isHidden = true
+    }
+    
+    @objc func checkAction(){
+        
+        let index = habitName.tag
+        AudioServicesPlayAlertSound(SystemSoundID(1520))
+        if HabitsStore.shared.habits[index].isAlreadyTakenToday == false {
+           
+            notSelectedButton()
+            HabitsStore.shared.track(HabitsStore.shared.habits[index])
+            counter.text = "\(HabitsStore.shared.habits[index].trackDates.count )"
+            
+            
+            NotificationCenter.default.post(name: Notification.Name("reloadData"), object: nil)
+        }
+    }
+}
+
+//MARK: - Extensions
+
+extension UIImageView {
+    func setImageColor(color: UIColor) {
+        let templateImage = self.image?.withRenderingMode(.alwaysTemplate)
+        self.image = templateImage
+        self.tintColor = color
     }
 }

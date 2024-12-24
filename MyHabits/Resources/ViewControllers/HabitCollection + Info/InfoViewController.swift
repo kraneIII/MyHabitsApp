@@ -7,6 +7,7 @@ class InfoViewController: UIViewController {
         let habitLabel = UILabel()
         habitLabel.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .headline), size: 25)
         habitLabel.text = "Привычка за 21 день"
+        habitLabel.textColor = UIColor.myColor(dark: .white, any: .black)
         habitLabel.translatesAutoresizingMaskIntoConstraints = false
         
         return habitLabel
@@ -17,6 +18,8 @@ class InfoViewController: UIViewController {
         descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         descriptionTextView.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         descriptionTextView.isEditable = false
+        descriptionTextView.textColor = UIColor.myColor(dark: .white, any: .black)
+        descriptionTextView.backgroundColor = UIColor.myColor(dark: #colorLiteral(red: 0.1568627059, green: 0.1568627059, blue: 0.1568627059, alpha: 1), any: .white)
         descriptionTextView.text =
     """
         1. Надо понять, от чего вы хотите избавиться и что приобрести.Провести ревизию всех своих приобретенных привычек. Составить список тех, которые вы желали бы выработать. Поставьте цели, достичь которых вам помогут только новые навыки. Выберите 1–3 привычки, над которыми будете работать в ближайшее время. Напишите мотивирующие фразы. Развесьте их на стенах так, чтобы они всегда попадались вам на глаза и помогали в трудные минуты.
@@ -45,9 +48,8 @@ class InfoViewController: UIViewController {
     //MARK: - Private
     
     private func setupViewController() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.myColor(dark: #colorLiteral(red: 0.1568627059, green: 0.1568627059, blue: 0.1568627059, alpha: 1), any: .white)
         navigationItem.title = "Информация"
-        tabBarController?.tabBar.backgroundColor = .white
 
     }
     

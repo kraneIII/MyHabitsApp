@@ -1,5 +1,10 @@
+//
+//  HabitsStore.swift
+//  MyHabits
+//
+//  Created by Денис Кузьминов on 26.06.2023.
+//
 
-import Foundation
 import UIKit
 
 /// Класс для хранения данных о привычке.
@@ -34,7 +39,7 @@ public final class Habit: Codable {
     
     /// Описание времени выполнения привычки.
     public var dateString: String {
-        "Каждый день в " + dateFormatter.string(from: date)
+        "В " + dateFormatter.string(from: date)
     }
     
     /// Показывает, была ли сегодня добавлена привычка.
