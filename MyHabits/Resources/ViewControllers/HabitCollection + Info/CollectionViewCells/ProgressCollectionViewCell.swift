@@ -5,8 +5,8 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     private lazy var progress: UIProgressView = {
         let progress = UIProgressView(progressViewStyle: .default)
-        progress.progressTintColor = .darkPurpleColor
-        progress.trackTintColor = .systemGray2
+        progress.progressTintColor = UIColor.myColor(dark: .orange, any: .darkPurpleColor)
+        progress.trackTintColor = UIColor.myColor(dark: #colorLiteral(red: 0.5837060809, green: 0.6086512208, blue: 0.6296952367, alpha: 1), any: .systemGray2)
         progress.translatesAutoresizingMaskIntoConstraints = false
         
         return progress
@@ -17,7 +17,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         motivationLabel.text = "Все получится!"
 //        motivationLabel.font = UIFont(name: "SFProText-Semibold", size: 13)
         motivationLabel.font = UIFont.systemFont( ofSize: 17, weight: .medium)
-        motivationLabel.textColor = .systemGray2
+        motivationLabel.textColor = UIColor.myColor(dark: #colorLiteral(red: 0.5837060809, green: 0.6086512208, blue: 0.6296952367, alpha: 1), any: .systemGray2)
         motivationLabel.translatesAutoresizingMaskIntoConstraints = false
         
         return motivationLabel
@@ -26,7 +26,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     private lazy var procentLabel: UILabel = {
         let procentLabel = UILabel()
         procentLabel.translatesAutoresizingMaskIntoConstraints = false
-        procentLabel.textColor = .systemGray2
+        procentLabel.textColor = UIColor.myColor(dark: #colorLiteral(red: 0.5837060809, green: 0.6086512208, blue: 0.6296952367, alpha: 1), any: .systemGray2)
         procentLabel.font = UIFont(name: "SFProText-Semibold", size: 13)
         
         return procentLabel
@@ -72,8 +72,9 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     }
     
     func configureProgresscCell() {
-        progress.progress = HabitsStore.shared.todayProgress
         procentLabel.text = "\(Int(HabitsStore.shared.todayProgress * 100)) %"
+        reloadInputViews()  
+        progress.progress = HabitsStore.shared.todayProgress
     }
     
 }

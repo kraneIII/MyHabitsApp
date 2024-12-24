@@ -27,7 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let controllers = [habitsViewControlelr, infoViewController]
         
         let tabBarController = UITabBarController()
-        
+        tabBarController.tabBar.backgroundColor =  UIColor.myColor(dark: #colorLiteral(red: 0.1098039076, green: 0.1098039076, blue: 0.1098039076, alpha: 1), any: .white)
+        tabBarController.tabBar.tintColor = UIColor.myColor(dark: .orange, any:#colorLiteral(red: 0.1568627059, green: 0.1568627059, blue: 0.1568627059, alpha: 1) )
         tabBarController.viewControllers = controllers.map {
             UINavigationController(rootViewController: $0)
         }
@@ -48,8 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        UNUserNotificationCenter.current().setBadgeCount(0)
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

@@ -4,6 +4,8 @@ import UIKit
 
 class HabitCreateViewController: UIViewController, UITextFieldDelegate {
     
+    lazy var notificationService = NotificationService()
+    
     private lazy var namedLabel: UILabel = {
         let namedLabel = UILabel()
         namedLabel.text = "НАЗВАНИЕ"
@@ -64,6 +66,7 @@ class HabitCreateViewController: UIViewController, UITextFieldDelegate {
         let dataPickerLabel = UILabel()
 
         dataPickerLabel.text = "Каждый день в"
+        dataPickerLabel.textColor =  UIColor.myColor(dark: .white, any: .black)
         dataPickerLabel.font = UIFont.systemFont(ofSize: 17)
         dataPickerLabel.translatesAutoresizingMaskIntoConstraints = false
         dataPickerLabel.clipsToBounds = true
@@ -79,6 +82,29 @@ class HabitCreateViewController: UIViewController, UITextFieldDelegate {
         dataPicker.translatesAutoresizingMaskIntoConstraints = false
         
         return dataPicker
+    }()
+    
+    private lazy var habitInfoTitle: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Инструкция:"
+        label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        label.textColor = UIColor.myColor(dark: .white, any: .black)
+        label.backgroundColor = .clear
+        
+        return label
+    }()
+    
+    private lazy var habitInfo: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.text = String.infoHabits
+        textView.backgroundColor = .clear
+        textView.textColor = UIColor.myColor(dark: .white, any: .black)
+        textView.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        textView.isEditable = false
+        
+        return textView
     }()
     
     override func viewDidLoad() {
@@ -103,13 +129,13 @@ class HabitCreateViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Private
     
     private func viewControllerSetup() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.myColor(dark: #colorLiteral(red: 0.1568627059, green: 0.1568627059, blue: 0.1568627059, alpha: 1), any: .white)
         self.navigationItem.title = "Создать"
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(saveHabitAndPushHabitController))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(pushHabitViewController))
-        navigationItem.rightBarButtonItem?.tintColor = .purple
-        navigationItem.leftBarButtonItem?.tintColor = .purple
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .done, target: self, action: #selector(pushHabitViewController))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.myColor(dark: #colorLiteral(red: 0.8646442294, green: 0.2918058038, blue: 0, alpha: 1), any: .purpleColor)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.myColor(dark: #colorLiteral(red: 0.8646442294, green: 0.2918058038, blue: 0, alpha: 1), any: .purpleColor)
         
   
     }
@@ -122,6 +148,8 @@ class HabitCreateViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(timeLabel)
         view.addSubview(dataPickerLabel)
         view.addSubview(dataPicker)
+        view.addSubview(habitInfo)
+        view.addSubview(habitInfoTitle)
     }
     
     private func viewsLayout() {
@@ -152,6 +180,14 @@ class HabitCreateViewController: UIViewController, UITextFieldDelegate {
             dataPicker.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 0),
             dataPicker.leadingAnchor.constraint(equalTo: dataPickerLabel.trailingAnchor, constant: 4),
             
+            habitInfoTitle.topAnchor.constraint(equalTo: dataPicker.bottomAnchor, constant: 30),
+            habitInfoTitle.leadingAnchor.constraint(equalTo: colorLabel.leadingAnchor),
+            
+            habitInfo.topAnchor.constraint(equalTo: habitInfoTitle.bottomAnchor, constant: 20),
+            habitInfo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            habitInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            habitInfo.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            
         
         ])
     }
@@ -179,7 +215,12 @@ class HabitCreateViewController: UIViewController, UITextFieldDelegate {
             self.present(alert, animated: true)
         }
         else {
-            dismiss(animated: true)
+            let notificationContext = UNMutableNotificationContent()
+            notificationContext.title = "Дзынь"
+            notificationContext.sound = .default
+            notificationContext.body = habitTextField.text ?? "веапроло"
+            notificationService.addNotification(date: dataPicker.date, context: notificationContext)
+            
             
             let newHabit = Habit(name: habitTextField.text!,
                                  date: dataPicker.date,
@@ -187,6 +228,9 @@ class HabitCreateViewController: UIViewController, UITextFieldDelegate {
             let store = HabitsStore.shared
             store.habits.append(newHabit)
             
+            dismiss(animated: true)
+            
+      
         }
     }
     

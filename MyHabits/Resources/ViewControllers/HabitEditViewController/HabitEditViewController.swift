@@ -1,12 +1,13 @@
+
 import UIKit
 
 class HabitEditViewController: UIViewController, UITextFieldDelegate {
-    
+        
     let habitViewController = HabitsViewController()
     let habitDetailsViewController = DetailsViewController()
     
-    var index = 0
-    
+    var index: Int = 0
+
     private lazy var namedLabel: UILabel = {
         let namedLabel = UILabel()
         namedLabel.text = "НАЗВАНИЕ"
@@ -121,11 +122,11 @@ class HabitEditViewController: UIViewController, UITextFieldDelegate {
     
     private func viewControllerSetup() {
         navigationItem.title = "Править"
-        view.backgroundColor = .white
+        view.backgroundColor =  UIColor.myColor(dark: #colorLiteral(red: 0.1098039076, green: 0.1098039076, blue: 0.1098039076, alpha: 1), any: .white)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(saveHabitAndPushHabitController))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .done, target: self, action: #selector(pushHabitViewController))
-        navigationItem.rightBarButtonItem?.tintColor = .purple
-        navigationItem.leftBarButtonItem?.tintColor = .purple
+        navigationItem.rightBarButtonItem?.tintColor =  UIColor.myColor(dark: #colorLiteral(red: 0.8646442294, green: 0.2918058038, blue: 0, alpha: 1), any: .purpleColor)
+        navigationItem.leftBarButtonItem?.tintColor =  UIColor.myColor(dark: #colorLiteral(red: 0.8646442294, green: 0.2918058038, blue: 0, alpha: 1), any: .purpleColor)
         
   
     }
@@ -178,11 +179,13 @@ class HabitEditViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func updateData() {
+        
+        
         namedLabel.text = HabitsStore.shared.habits[index].name
         colorPickerButton.backgroundColor = HabitsStore.shared.habits[index].color
         dataPicker.date = HabitsStore.shared.habits[index].date
-        
     }
+    
     
     private func delete() {
         
@@ -203,6 +206,7 @@ class HabitEditViewController: UIViewController, UITextFieldDelegate {
             self.navigationController?.dismiss(animated: true)
         })
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        NotificationCenter.default.post(name: Notification.Name("popVC"), object: nil)
         
         present(alert, animated: true)
         
@@ -227,13 +231,13 @@ class HabitEditViewController: UIViewController, UITextFieldDelegate {
             pushHabitViewController()
         }
         else {
-            
             HabitsStore.shared.habits[index].name = habitTextField.text!
             HabitsStore.shared.habits[index].color = colorPickerButton.backgroundColor!
             HabitsStore.shared.habits[index].date = dataPicker.date
             HabitsStore.shared.save()
             self.habitViewController.reload()
             
+            NotificationCenter.default.post(name: Notification.Name("popVC"), object: nil)
             dismiss(animated: true)
         }
     }

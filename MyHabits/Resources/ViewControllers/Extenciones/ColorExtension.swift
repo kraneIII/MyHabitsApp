@@ -3,6 +3,17 @@ import Foundation
 
 extension UIColor {
     
+    static func myColor(dark: UIColor, any: UIColor) -> UIColor {
+        UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return dark
+            }
+            else {
+                return any
+            }
+        }
+    }
+    
     static var lightGrayColor: UIColor {
         UIColor( red: 242/255, green: 242/255, blue: 247/255, alpha: 1)
     }
