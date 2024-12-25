@@ -6,6 +6,8 @@ class HabitEditViewController: UIViewController, UITextFieldDelegate {
     let habitViewController = HabitsViewController()
     let habitDetailsViewController = DetailsViewController()
     
+    let notificationService = NotificationService()
+    
     var index: Int = 0
 
     private lazy var namedLabel: UILabel = {
@@ -190,7 +192,8 @@ class HabitEditViewController: UIViewController, UITextFieldDelegate {
     private func delete() {
         
         HabitsStore.shared.habits.remove(at: index)
-
+        notificationService.removeNotification(indetifier: index)
+        
     }
     
     //MARK: - @objc

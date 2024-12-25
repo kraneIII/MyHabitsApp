@@ -1,9 +1,4 @@
-//
-//  NotificationService.swift
-//  MyHabits
-//
-//  Created by Ковалев Никита on 16.12.2024.
-//
+
 import NotificationCenter
 import Foundation
 
@@ -26,21 +21,30 @@ class NotificationService {
             .authorizationStatus == .authorized
     }
     
-    func addNotification(date: Date, context: UNMutableNotificationContent) {
+    func addNotification(date: Date, context: UNMutableNotificationContent, id: Int) {
         
         if date < Date.now { return }
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: date.timeIntervalSinceNow, repeats: false)
+        let notificationId = "\(id)"
+
         
+        let request = UNNotificationRequest(identifier: notificationId, content: context , trigger: trigger )
         
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: context , trigger: trigger )
         
         UNUserNotificationCenter.current().add(request)
         
     }
     
-    func deleteNotification() {
-        
+    func deleteAllNotification() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+
     }
+    
+    func removeNotification(indetifier: Int) {
+        let notificationId = "\(indetifier)"
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [notificationId])
+    }
+
     
 }

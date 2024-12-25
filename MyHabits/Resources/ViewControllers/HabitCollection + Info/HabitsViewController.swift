@@ -104,7 +104,11 @@ class HabitsViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(presentCreateHabitController))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .done, target: self, action: #selector(deleteAllHabits))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.myColor(dark: #colorLiteral(red: 0.8646442294, green: 0.2918058038, blue: 0, alpha: 1), any: .purpleColor)
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.myColor(dark: #colorLiteral(red: 0.8646442294, green: 0.2918058038, blue: 0, alpha: 1), any: .purpleColor)
+        navigationItem.rightBarButtonItem?.tintColor = 
+        UIColor.myColor(dark: #colorLiteral(red: 0.8646442294,
+                                            green: 0.2918058038,
+                                            blue: 0, alpha: 1),
+                        any: .purpleColor)
 
     }
     
@@ -182,6 +186,7 @@ class HabitsViewController: UIViewController {
  
     @objc func deleteAllHabits() {
         deleteAll()
+        notificationService.deleteAllNotification()
     }
     
     @objc func reloadDataAction(notificiation: Notification) {

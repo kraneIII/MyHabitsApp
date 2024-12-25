@@ -4,6 +4,8 @@ import UIKit
 
 class HabitCreateViewController: UIViewController, UITextFieldDelegate {
     
+    let index = 0
+    
     lazy var notificationService = NotificationService()
     
     private lazy var namedLabel: UILabel = {
@@ -216,10 +218,10 @@ class HabitCreateViewController: UIViewController, UITextFieldDelegate {
         }
         else {
             let notificationContext = UNMutableNotificationContent()
-            notificationContext.title = "Дзынь"
+            notificationContext.title = "Проверьте вашу привычку"
             notificationContext.sound = .default
-            notificationContext.body = habitTextField.text ?? "веапроло"
-            notificationService.addNotification(date: dataPicker.date, context: notificationContext)
+            notificationContext.body = habitTextField.text ?? ""
+            notificationService.addNotification(date: dataPicker.date, context: notificationContext, id: index)
             
             
             let newHabit = Habit(name: habitTextField.text!,
